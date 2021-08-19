@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "opentelemetry-pycon"
+version = "1.0.0"
+description = "Tracing project for pycon"
+authors = ["Vladislav Laukhin <laukhin97@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+opentelemetry-api = "^1.4.1"
+opentelemetry-sdk = "^1.4.1"
+fastapi = "^0.68.0"
+httpx = ">=0.18.0,<0.19.0"
+redis = "^3.5.3"
+opentelemetry-instrumentation-redis = "^0.23b2"
+opentelemetry-instrumentation-httpx = "^0.23b2"
+opentelemetry-instrumentation-fastapi = "^0.23b2"
+uvicorn = "^0.15.0"
+opentelemetry-exporter-otlp = "^1.4.1"
+opencensus = "^0.7.13"
+opencensus-ext-prometheus = "^0.2.1"
+prometheus-client = "^0.11.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
+isort = "^5.9.3"
+docformatter = "^1.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 220
+target-version = ["py38"]
+include = '\.pyi?$'
+skip-string-normalization = true
+exclude = '''
+(
+  /(
+    | \.git
+    | \.mypy_cache
+  )/
+)
+'''
+
+[tool.isort]
+line_length = 120
+multi_line_output = 3
+lines_after_imports = 2
+sections = ['FUTURE', 'STDLIB', 'THIRDPARTY', 'FIRSTPARTY', 'LOCALFOLDER']
+no_lines_before = ['STDLIB', 'LOCALFOLDER']

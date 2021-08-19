@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opentelemetrycollector
+  namespace: fancy-namespace
+  labels:
+    app: opentelemetrycollector
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opentelemetrycollector
+  template:
+    metadata:
+      labels:
+        app: opentelemetrycollector
+        app.kubernetes.io/name: opentelemetrycollector
+    spec:
+      containers:
+        - name: otelcol
+          args:
+            - --config=/conf/collector.yaml
+          image: otel/opentelemetry-collector:0.33.0
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /conf
+              name: opentelemetry-collector-config
+      volumes:
+        - configMap:
+            items:
+              - key: collector.yaml
+                path: collector.yaml
+            name: opentelemetry-collector-config
+          name: opentelemetry-collector-config
+

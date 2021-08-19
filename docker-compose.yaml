@@ -1,0 +1,24 @@
+version: "2.4"
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9990:9999
+    restart: always
+    command: uvicorn opentelemetry_pycon.app:FASTAPI_APP --port 9999 --host 0.0.0.0
+  opentelemetry-collector:
+    image: otel/opentelemetry-collector:0.33.0
+    restart: always
+    volumes:
+      - ./infrastructure/collector.yaml:/etc/custom/config.yaml
+    command: --config /etc/custom/config.yaml
+  jaeger:
+    image: jaegertracing/all-in-one:1.25
+    environment:
+      COLLECTOR_ZIPKIN_HOST_PORT: ":9411"
+    ports:
+      - 16686:16686
+  redis:
+    image: redis:6.2.5
