@@ -9,7 +9,7 @@
 1. go to the jaeger UI on `http://localhost:16686/` and discover some traces
 
 ### Manual span testing
-run the `python opentelemetry_pycon/span_cli.py` and follow CLI instructions, you will see opentelemetry data after each "request"
+Run the `python opentelemetry_pycon/span_cli.py` and follow CLI instructions, you will see opentelemetry data after each "request"
 
 
 ## K8s example
