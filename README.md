@@ -13,4 +13,4 @@ run the `python opentelemetry_pycon/span_cli.py` and follow CLI instructions, yo
 
 
 ## K8s example
-See `k8s/collector-example.yaml` for k8s deployment example. You can just apply it via kubectl or other methods.
+See `k8s/collector-example.yaml` for k8s deployment example. You can just apply it via kubectl or other tools.
