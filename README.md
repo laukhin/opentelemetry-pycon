@@ -1,5 +1,5 @@
 ## Prerequisites
-* [https://docs.docker.com/compose/][Docker Compose]
+* [Docker Compose](https://docs.docker.com/compose/)
 
 
 ## Quickstart
