@@ -1,3 +1,5 @@
+Repository for PyCon 2021 opentelemetry presentation
+
 ## Prerequisites
 * [Docker Compose](https://docs.docker.com/compose/)
 
