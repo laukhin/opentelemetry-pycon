@@ -1,7 +1,6 @@
 ## Prerequisites
 * [Docker Compose](https://docs.docker.com/compose/)
 
-
 ## Quickstart
 ### Jaeger testing
 1. run the `docker-compose build && docker-compose up -d` command
@@ -11,6 +10,7 @@
 ### Manual span testing
 Run the `python opentelemetry_pycon/span_cli.py` and follow CLI instructions, you will see opentelemetry data after each "request"
 
-
 ## K8s example
-See `k8s/collector-example.yaml` for k8s deployment example. You can just apply it via kubectl or other tools.
+See `k8s/collector-example.yaml` for k8s deployment example. 
+
+You can just apply it via `kubectl apply -f k8s/collector-example.yaml` or other tools. To make it work you also need an application and jaeger, but it's on your own :) 

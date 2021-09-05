@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fancy-namespace
+  labels:
+    name: fancy-namespace
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,4 +39,54 @@ spec:
                 path: collector.yaml
             name: opentelemetry-collector-config
           name: opentelemetry-collector-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opentelemetrycollector
+  namespace: fancy-namespace
+  labels:
+    app: opentelemetrycollector
+spec:
+  ports:
+  - name: grpc-otlp
+    port: 4317
+    protocol: TCP
+    targetPort: 4317
+  selector:
+    app.kubernetes.io/name: opentelemetrycollector
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opentelemetry-collector-config
+  namespace: fancy-namespace
+data:
+  collector.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+
+    processors:
+      batch:
+
+    exporters:
+      jaeger:
+        endpoint: "jaeger:14250"
+        insecure: true
+
+    extensions:
+      health_check:
+
+    service:
+      extensions: [health_check]
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [jaeger]
 
