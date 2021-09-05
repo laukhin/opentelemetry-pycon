@@ -13,4 +13,6 @@ Run the `python opentelemetry_pycon/span_cli.py` and follow CLI instructions, yo
 ## K8s example
 See `k8s/collector-example.yaml` for k8s deployment example. 
 
-You can just apply it via `kubectl apply -f k8s/collector-example.yaml` or other tools. To make it work you also need an application and jaeger, but it's on your own :) 
+You can just apply it via `kubectl apply -f k8s/collector-example.yaml` or other tools. 
+
+To make it work you also need an application and a jaeger instance, but it's on your own :) 
